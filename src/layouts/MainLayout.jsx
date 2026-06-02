@@ -5,37 +5,34 @@ import Title from "../components/Titles";
 import Buttons from "../components/Button";
 import { useEffect, useState } from "react";
 import NotificationBar from "../components/NotificationBar";
+import { ThemeProvider } from "../context/ThemeContext";
 
 function MainLayout() {
   const [openNotif, setOpenNotif] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
+  const [openSideBar, setOpenSideBar] = useState(false);
 
   return (
-    <main
-      className={`w-full h-auto flex flex-col relative ${darkMode ? "dark" : ""}`}
-    >
-      <Navbar
-        setOpenNotif={setOpenNotif}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-      />
+    <ThemeProvider>
+      <main className="w-full h-auto flex flex-col relative">
+        <Navbar
+          setOpenNotif={setOpenNotif}
+          openSideBar={openSideBar}
+          setOpenSideBar={setOpenSideBar}
+        />
 
-      <section className="w-full h-auto flex relative ">
-        <Sidebar />
+        <section className="w-full h-auto flex relative dark:bg-slate-700">
+          <Sidebar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
 
-        <div className="w-[80%] ml-auto p-2 bg-slate-50">
-          <section className="w-full h-auto flex flex-col gap-2">
-            <Outlet />
-          </section>
-        </div>
-      </section>
+          <div className="w-full ml-auto p-2 bg-slate-50 dark:bg-transparent md:w-[80%]">
+            <section className="w-full min-h-[85vh] flex flex-col gap-2 ">
+              <Outlet />
+            </section>
+          </div>
+        </section>
 
-      <NotificationBar openNotif={openNotif} setOpenNotif={setOpenNotif} />
-    </main>
+        <NotificationBar openNotif={openNotif} setOpenNotif={setOpenNotif} />
+      </main>
+    </ThemeProvider>
   );
 }
 

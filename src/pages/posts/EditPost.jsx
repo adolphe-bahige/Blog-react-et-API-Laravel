@@ -10,7 +10,7 @@ function EditPostForm() {
         <h1>Edit Post</h1>
       </Title>
 
-      <div className="w-full h-auto p-4  flex justify-center items-center ">
+      <div className="w-full h-auto p-2 flex justify-center items-center md:p-4">
         <Formik
           initialValues={{
             titre: "",
@@ -35,7 +35,7 @@ function EditPostForm() {
           }}
         >
           {({ setFieldValue }) => (
-            <Form className="w-2/4 h-auto p-4 bg-slate-200 flex flex-col gap-2 rounded-md ">
+            <Form className="w-full h-auto p-2 bg-slate-200 flex flex-col gap-2 rounded-md dark:bg-slate-800 dark:text-white md:w-2/4 md:p-4">
               {/* titre */}
               <div className="flex flex-col gap-1">
                 <Field
@@ -53,7 +53,7 @@ function EditPostForm() {
                     setFieldValue("slug", slug);
                   }}
                   placeholder="Titre"
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 rounded-sm "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 rounded-sm placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
 
                 <ErrorMessage
@@ -67,8 +67,9 @@ function EditPostForm() {
               <div className="flex flex-col">
                 <Field
                   name="slug"
+                  placeholder="slug"
                   readOnly
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 rounded-sm "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 rounded-sm placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
               </div>
 
@@ -77,18 +78,28 @@ function EditPostForm() {
                 <Field
                   as="select"
                   name="categorie"
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 rounded-sm"
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 rounded-sm dark:border-slate-500 transition-colors"
                 >
-                  <option value="">-- Choisir une catégorie --</option>
-                  <option value="Sport">Sport</option>
-                  <option value="Technologie">Technologie</option>
-                  <option value="Actualité">Actualité</option>
-                  <option value="Immobilier">Immobilier</option>
+                  <option value="" className="dark:text-slate-800">
+                    --- Choisir une catégorie ---
+                  </option>
+                  <option value="Sport" className="dark:text-slate-800">
+                    Sport
+                  </option>
+                  <option value="Technologie" className="dark:text-slate-800">
+                    Technologie
+                  </option>
+                  <option value="Actualité" className="dark:text-slate-800">
+                    Actualité
+                  </option>
+                  <option value="Immobilier" className="dark:text-slate-800">
+                    Immobilier
+                  </option>
                   {/* {categories.map((cat) => (.
-                        <option key={cat.id} value={cat.id}>
-                          {cat.name}
-                        </option>
-                      ))} */}
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))} */}
                 </Field>
 
                 <ErrorMessage
@@ -104,7 +115,7 @@ function EditPostForm() {
                   as="textarea"
                   name="contenu"
                   placeholder="Description"
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 h-24 rounded-sm resize-none "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 h-24 rounded-sm resize-none placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
                 <ErrorMessage
                   name="contenu"
@@ -115,7 +126,7 @@ function EditPostForm() {
 
               <Buttons
                 type="submit"
-                className="bg-indigo-900 text-white font-medium cursor-pointer py-2 transition-[1s] hover:bg-blue-900/90 mt-6"
+                className="bg-indigo-900 text-white font-medium cursor-pointer py-2 mt-6 transition-colors hover:bg-indigo-800 dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-800"
               >
                 Modifier
               </Buttons>

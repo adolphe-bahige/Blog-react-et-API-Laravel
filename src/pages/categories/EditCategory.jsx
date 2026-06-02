@@ -10,7 +10,7 @@ function EditCategoryForm() {
         <h1>Edit Category</h1>
       </Title>
 
-      <div className="w-full h-auto p-4  flex justify-center items-center ">
+      <div className="w-full h-auto p-2 flex justify-center items-center md:p-4">
         <Formik
           initialValues={{
             name: "",
@@ -23,7 +23,7 @@ function EditCategoryForm() {
               .required("* Le nom est obligatoire"),
             // slug: Yup.string().required("Slug requis"), // effecer plutard
             description: Yup.string()
-              .min(5, "* Minimum 5 caractères")
+              .min(10, "* Minimum 10 caractères")
               .required("* Description requise"), // effecer plutard
           })}
           onSubmit={(values, { resetForm }) => {
@@ -32,7 +32,7 @@ function EditCategoryForm() {
           }}
         >
           {({ setFieldValue }) => (
-            <Form className="w-2/4 h-auto p-4 bg-slate-200 flex flex-col gap-2 rounded-md ">
+            <Form className="w-full h-auto p-2 bg-slate-200 flex flex-col gap-2 rounded-md dark:bg-slate-800 dark:text-white md:w-2/4 md:p-4">
               {/* NAME */}
               <div className="flex flex-col gap-1">
                 <Field
@@ -50,7 +50,7 @@ function EditCategoryForm() {
                     setFieldValue("slug", slug);
                   }}
                   placeholder="Ex: Sport"
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 rounded-sm "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 rounded-sm placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
 
                 <ErrorMessage
@@ -64,8 +64,9 @@ function EditCategoryForm() {
               <div className="flex flex-col">
                 <Field
                   name="slug"
+                  placeholder="slug"
                   readOnly
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 rounded-sm "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 rounded-sm placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
               </div>
 
@@ -75,7 +76,7 @@ function EditCategoryForm() {
                   as="textarea"
                   name="description"
                   placeholder="Description"
-                  className="outline-hidden border border-blue-900 focus:border-2 transition-[1s] text-sm p-2 h-24 rounded-sm resize-none "
+                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 h-24 rounded-sm resize-none placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
                 />
                 <ErrorMessage
                   name="description"
@@ -86,7 +87,7 @@ function EditCategoryForm() {
 
               <Buttons
                 type="submit"
-                className="bg-indigo-900 text-white font-medium cursor-pointer py-2 transition-[1s] hover:bg-blue-900/90 mt-6"
+                className="bg-indigo-900 text-white font-medium cursor-pointer py-2 mt-6 transition-colors hover:bg-indigo-800 dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-800"
               >
                 Modifier
               </Buttons>

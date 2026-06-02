@@ -12,7 +12,7 @@ function Buttons({ children, className, to, onClick, type = "button" }) {
     <button
       type={type}
       onClick={handleClick}
-      className={`px-4 py-1 font-medium rounded-md text-sm cursor-pointer  ${className}`}
+      className={`px-4 py-1 font-medium rounded-md text-sm cursor-pointer ${className}`}
     >
       {children}
     </button>

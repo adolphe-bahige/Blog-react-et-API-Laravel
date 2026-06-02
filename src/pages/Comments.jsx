@@ -15,7 +15,7 @@ function Comments() {
         onClick={(e) => {
           setActiveId(null);
         }}
-        className="w-full h-auto flex flex-wrap gap-4"
+        className="w-full h-auto flex flex-wrap gap-4 dark:bg-slate-500 dark:p-2 rounded-md transition-all"
       >
         <article
           key={1}
@@ -23,13 +23,13 @@ function Comments() {
             e.stopPropagation();
             setActiveId(1);
           }}
-          className={`w-[32%] h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 transition-[1s] hover:bg-slate-200 ${activeId === 1 ? "border-2 bg-slate-200" : "border"}`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 1 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">
             {/* profil */}
             <div className="h-10 flex justify-between items-center gap-2">
-              <div className="w-10 h-10 rounded-full overflow-hidden flex justify-center items-center border border-indigo-300">
+              <div className="w-10 h-10 rounded-full overflow-hidden flex justify-center items-center border border-[#00000038]">
                 <img src={ProfilUser} alt="profil" className="object-cover " />
               </div>
               <div className="flex flex-col gap-1">
@@ -96,7 +96,7 @@ function Comments() {
             e.stopPropagation();
             setActiveId(2);
           }}
-          className={`w-[32%] h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 transition-[1s] hover:bg-slate-200 ${activeId === 2 ? "border-2 bg-slate-200" : "border"}`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 2 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">
@@ -169,7 +169,7 @@ function Comments() {
             e.stopPropagation();
             setActiveId(3);
           }}
-          className={`w-[32%] h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 transition-[1s] hover:bg-slate-200 ${activeId === 3 ? "border-2 bg-slate-200" : "border"}`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 3 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">

@@ -9,13 +9,13 @@ function Dashbord() {
         <h1 className="text-lg font-medium">Dashboard</h1>
       </Title>
 
-      <div className="w-full min-h-[75vh] flex flex-col gap-4 bg-[#ffff]">
+      <div className="w-full min-h-[74vh] flex flex-col gap-4 ">
         {/* all counts */}
-        <section className="bg-indigo-40 w-full py-2 flex justify-between items-center">
-          <div className="bg-indigo-900 shadow-lg w-[24%] p-4 flex justify-between items-center text-white rounded-md transition-[1s] hover:bg-yellow-500 hover:text-white">
+        <section className="w-full py-2 flex flex-wrap items-center gap-2 md:flex-row md:justify-between">
+          <div className="bg-indigo-900 shadow-lg w-[48%] p-4 flex justify-between items-center text-white rounded-md transition-all hover:bg-yellow-500 hover:text-white dark:bg-slate-800 dark:hover:text-slate-800 md:w-[24%]">
             <div className="flex flex-col gap-1 text-sm">
               <h1 className="text-sm font-semibold">40 K</h1>
-              <p className="text-xs">Utilisateurs</p>
+              <p className="text-xs font-medium ">Utilisateurs</p>
             </div>
 
             <svg
@@ -33,10 +33,10 @@ function Dashbord() {
             </svg>
           </div>
 
-          <div className="bg-indigo-900 shadow-lg w-[24%] p-4 flex justify-between items-center text-white rounded-md transition-[1s] hover:bg-yellow-500 hover:text-white">
+          <div className="bg-indigo-900 shadow-lg w-[48%] p-4 flex justify-between items-center text-white rounded-md transition-all hover:bg-yellow-500 hover:text-white dark:bg-slate-800 dark:hover:text-slate-800 md:w-[24%]">
             <div className="flex flex-col gap-1 text-sm">
               <h1 className="text-sm font-semibold">40 K</h1>
-              <p className="text-xs">Catégories</p>
+              <p className="text-xs font-medium">Catégories</p>
             </div>
 
             <svg
@@ -53,10 +53,10 @@ function Dashbord() {
             </svg>
           </div>
 
-          <div className="bg-indigo-900 shadow-lg w-[24%] p-4 flex justify-between items-center text-white rounded-md transition-[1s] hover:bg-yellow-500 hover:text-white">
+          <div className="bg-indigo-900 shadow-lg w-[48%] p-4 flex justify-between items-center text-white rounded-md transition-all hover:bg-yellow-500 hover:text-white dark:bg-slate-800 dark:hover:text-slate-800 md:w-[24%]">
             <div className="flex flex-col gap-1 text-sm">
               <h1 className="text-sm font-semibold">1 K</h1>
-              <p className="text-xs">Articles</p>
+              <p className="text-xs font-medium">Articles</p>
             </div>
 
             <svg
@@ -75,10 +75,10 @@ function Dashbord() {
             </svg>
           </div>
 
-          <div className="bg-indigo-900 shadow-lg w-[24%] p-4 flex justify-between items-center text-white rounded-md transition-[1s] hover:bg-yellow-500 hover:text-white">
+          <div className="bg-indigo-900 shadow-lg w-[48%] p-4 flex justify-between items-center text-white rounded-md transition-all hover:bg-yellow-500 hover:text-white dark:bg-slate-800 dark:hover:text-slate-800 md:w-[24%]">
             <div className="flex flex-col gap-1 text-sm">
               <h1 className="text-sm font-semibold">400 K</h1>
-              <p className="text-xs">Commentaires</p>
+              <p className="text-xs font-medium">Commentaires</p>
             </div>
 
             <svg
@@ -97,14 +97,14 @@ function Dashbord() {
         </section>
 
         {/* recents adds */}
-        <section className="w-full flex justify-between gap-2">
-          <div className="w-[55%] bg-slate-200 rounded-t-md">
+        <section className="w-full flex flex-col gap-6 md:flex-row md:justify-between md:gap-2">
+          <div className="w-full bg-slate-200 rounded-md dark:bg-slate-800 dark:text-white dark:p-2 transition-colors md:w-[55%]">
             <div className="w-full flex justify-between items-center border-b border-[#4c008246] p-2">
               <h1 className="text-sm font-medium">Recent posts</h1>
 
               <Buttons
                 to="/posts"
-                className="bg-indigo-900 text-white text-xs font-medium flex justify-center items-center"
+                className="bg-indigo-900 text-white text-xs font-medium flex justify-center items-center transition-colors hover:bg-indigo-800 dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-800 "
               >
                 See all
                 <svg
@@ -126,7 +126,7 @@ function Dashbord() {
             {/* tables */}
             <div className="w-full flex flex-col gap-1">
               {/* Header */}
-              <div className="grid grid-cols-[40%_35%_25%] text-sm font-semibold border-b border-[#4c008246] p-2">
+              <div className="grid grid-cols-[40%_35%_25%] text-sm font-semibold border-b border-[#4c008246] p-2 dark:bg-slate-600 dark:rounded-md">
                 <div>Titre</div>
                 <div>Slug</div>
                 <div>Auteur</div>
@@ -134,31 +134,31 @@ function Dashbord() {
 
               {/* Rows */}
               <div>
-                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Post title </div>
                   <div>Slug</div>
                   <div>Auteur</div>
                 </div>
 
-                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Post title </div>
                   <div>Slug</div>
                   <div>Auteur</div>
                 </div>
 
-                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Post title </div>
                   <div>Slug</div>
                   <div>Auteur</div>
                 </div>
 
-                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Post title </div>
                   <div>Slug</div>
                   <div>Auteur</div>
                 </div>
 
-                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[40%_35%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Post title </div>
                   <div>Slug</div>
                   <div>Auteur</div>
@@ -167,13 +167,13 @@ function Dashbord() {
             </div>
           </div>
 
-          <div className="w-[42%] bg-slate-200 rounded-t-md">
+          <div className="w-full bg-slate-200 rounded-md dark:bg-slate-800 dark:text-white dark:p-2 transition-colors md:w-[42%]">
             <div className="w-full flex justify-between items-center border-b border-[#4c008246] p-2">
               <h1 className="text-sm font-medium">Recent categories</h1>
 
               <Buttons
                 to="/categories"
-                className="bg-indigo-900 text-white text-xs font-medium flex justify-center items-center"
+                className="bg-indigo-900 text-white text-xs font-medium flex justify-center items-center transition-all hover:bg-indigo-800 dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-800"
               >
                 See all
                 <svg
@@ -195,7 +195,7 @@ function Dashbord() {
             {/* tables */}
             <div className="w-full flex flex-col gap-1">
               {/* Header */}
-              <div className="grid grid-cols-[45%_30%_25%] text-sm font-semibold border-b border-[#4c008246] p-2">
+              <div className="grid grid-cols-[45%_30%_25%] text-sm font-semibold border-b border-[#4c008246] p-2 dark:bg-slate-600 dark:rounded-md">
                 <div>Nom</div>
                 <div>Slug</div>
                 <div>Date</div>
@@ -203,31 +203,31 @@ function Dashbord() {
 
               {/* Rows */}
               <div>
-                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Category name</div>
                   <div>slug</div>
                   <div>14/05/2026</div>
                 </div>
 
-                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Category name</div>
                   <div>slug</div>
                   <div>14/05/2026</div>
                 </div>
 
-                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Category name</div>
                   <div>slug</div>
                   <div>14/05/2026</div>
                 </div>
 
-                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Category name</div>
                   <div>slug</div>
                   <div>14/05/2026</div>
                 </div>
 
-                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white]">
+                <div className="grid grid-cols-[45%_30%_25%] p-2 text-sm hover:bg-[white] dark:hover:bg-slate-800">
                   <div>Category name</div>
                   <div>slug</div>
                   <div>14/05/2026</div>

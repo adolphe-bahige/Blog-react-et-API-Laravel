@@ -11,9 +11,9 @@ function Users() {
       </Title>
 
       {/* tables */}
-      <div className="w-full min-h-[74vh] p-4 flex flex-col gap-1">
+      <div className="w-full min-h-[74vh] p-4 flex flex-col gap-1 rounded-md dark:bg-slate-500 transition-colors">
         {/* Header */}
-        <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] bg-slate-300 p-1 text-sm font-semibold border rounded-sm">
+        <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-400 transition-colors">
           <div>Id</div>
           <div>Nom</div>
           <div>Email</div>
@@ -23,10 +23,9 @@ function Users() {
         </div>
 
         {/* Rows */}
-
         <div className="flex flex-col gap-1">
           {/* 1 */}
-          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm border-t hover:bg-slate-100 border rounded-sm items-center ">
+          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm hover:bg-slate-100 rounded-sm items-center border border-[#00000026] dark:border-slate-400 dark:hover:bg-slate-400 transition-colors dark:text-slate-100">
             <div>1</div>
             <div>Blind Spinoza</div>
             <div>blindspinoza@gmai.com </div>
@@ -59,7 +58,7 @@ function Users() {
           </div>
 
           {/* 2 */}
-          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm border-t hover:bg-slate-100 border rounded-sm items-center ">
+          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm border-t hover:bg-slate-100 rounded-sm items-center border border-[#00000026] dark:border-slate-400 dark:hover:bg-slate-400 transition-colors dark:text-slate-100">
             <div>1</div>
             <div>John Jotta Kone</div>
             <div>johnkottakone@gmai.com </div>

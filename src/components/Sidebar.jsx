@@ -1,13 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 
 const linkClass = ({ isActive }) =>
-  `w-full text-base font-medium p-2 rounded-sm transition-[1s] flex items-center gap-2 hover:bg-slate-200 hover:text-indigo-900 ${isActive ? "bg-slate-200 text-indigo-900" : "text-white bg-none"}`;
+  `w-full text-base font-medium p-2 rounded-sm transition-[1s] flex items-center gap-2 hover:bg-slate-200 hover:text-indigo-900 dark:hover:text-slate-800 ${isActive ? "bg-slate-200 text-indigo-900 dark:text-slate-800" : "text-white bg-none"}`;
 
-function Sidebar() {
+function Sidebar({ openSideBar, setOpenSideBar }) {
+  const closeSide = () => setOpenSideBar(false);
   return (
-    <section className="bg-indigo-900 w-[20%] min-h-[88vh] overflow-y-auto text-white fixed z-10">
+    <section
+      onClick={() => setOpenSideBar(false)}
+      className={`bg-indigo-900 w-full min-h-[88vh] overflow-y-auto text-white fixed top-[12vh] z-20 transform transition-transform dark:bg-slate-800 duration-300 pt-2 ${openSideBar ? "translate-x-0 " : "-translate-x-full "} md:w-[20%] md:flex md:translate-x-0`}
+    >
       <nav className="w-full flex flex-col gap-1 px-2 ">
-        <NavLink to="/" className={linkClass}>
+        <NavLink to="/" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -23,7 +27,7 @@ function Sidebar() {
           Dashboard
         </NavLink>
 
-        <NavLink to="/categories" className={linkClass}>
+        <NavLink to="/categories" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -39,7 +43,7 @@ function Sidebar() {
           Categories
         </NavLink>
 
-        <NavLink to="/posts" className={linkClass}>
+        <NavLink to="/posts" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -57,7 +61,7 @@ function Sidebar() {
           Posts
         </NavLink>
 
-        <NavLink to="/comments" className={linkClass}>
+        <NavLink to="/comments" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -73,7 +77,7 @@ function Sidebar() {
           Comments
         </NavLink>
 
-        <NavLink to="/users" className={linkClass}>
+        <NavLink to="/users" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -90,7 +94,7 @@ function Sidebar() {
           Users
         </NavLink>
 
-        <NavLink to="/settings" className={linkClass}>
+        <NavLink to="/settings" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
