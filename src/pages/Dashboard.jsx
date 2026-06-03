@@ -9,6 +9,7 @@ function Dashbord() {
         <h1 className="text-lg font-medium">Dashboard</h1>
       </Title>
 
+      {/* content */}
       <div className="w-full min-h-[74vh] flex flex-col gap-4 ">
         {/* all counts */}
         <section className="w-full py-2 flex flex-wrap items-center gap-2 md:flex-row md:justify-between">

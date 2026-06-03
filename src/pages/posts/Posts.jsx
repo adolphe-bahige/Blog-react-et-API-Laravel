@@ -17,7 +17,7 @@ function Posts() {
       </Title>
 
       {/* tables */}
-      <div className="w-full min-h-[74vh] p-2 flex flex-col gap-1 rounded-md dark:bg-slate-800 transition-colors">
+      <div className="w-full min-h-[74vh] p-2 flex flex-col gap-2 rounded-md dark:bg-slate-800 transition-colors">
         {/* Header */}
         <div className="grid grid-cols-[15%_40%_25%_20%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-500 transition-colors md:grid-cols-[5%_20%_20%_12%_12%_11%_10%_10%]">
           <div>Id</div>

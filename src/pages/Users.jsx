@@ -11,25 +11,25 @@ function Users() {
       </Title>
 
       {/* tables */}
-      <div className="w-full min-h-[74vh] p-4 flex flex-col gap-1 rounded-md dark:bg-slate-500 transition-colors">
+      <div className="w-full min-h-[74vh] p-2 flex flex-col gap-2 rounded-md dark:bg-slate-800 transition-colors">
         {/* Header */}
-        <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-400 transition-colors">
+        <div className="grid grid-cols-[15%_65%_20%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-500 transition-colors md:grid-cols-[10%_25%_25%_15%_15%_10%]">
           <div>Id</div>
-          <div>Nom</div>
+          <div className="hidden md:flex">Nom</div>
           <div>Email</div>
-          <div>Profil</div>
-          <div>Role</div>
-          <div>Actions</div>
+          <div className="hidden md:flex">Profil</div>
+          <div className="hidden md:flex">Role</div>
+          <div className="text-center">Actions</div>
         </div>
 
         {/* Rows */}
         <div className="flex flex-col gap-1">
           {/* 1 */}
-          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm hover:bg-slate-100 rounded-sm items-center border border-[#00000026] dark:border-slate-400 dark:hover:bg-slate-400 transition-colors dark:text-slate-100">
+          <div className="grid grid-cols-[15%_65%_20%] p-1 text-sm hover:bg-slate-100 border border-[#00000026] rounded-sm dark:border-slate-500 dark:hover:bg-slate-800 transition-colors dark:text-white md:grid-cols-[10%_25%_25%_15%_15%_10%]">
             <div>1</div>
-            <div>Blind Spinoza</div>
+            <div className="hidden md:flex">Blind Spinoza</div>
             <div>blindspinoza@gmai.com </div>
-            <div>
+            <div className="hidden md:flex">
               <div className="w-8 h-8 border rounded-full overflow-hidden">
                 <img
                   src={avatarUser}
@@ -38,8 +38,8 @@ function Users() {
                 />
               </div>
             </div>
-            <div>User </div>
-            <div className="flex justify-around px-1 text-sm font-medium">
+            <div className="hidden md:flex">Super admin </div>
+            <div className="flex justify-center px-1 text-sm font-medium">
               <Link onClick={() => alert("deleted")} className="text-rose-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +58,11 @@ function Users() {
           </div>
 
           {/* 2 */}
-          <div className="grid grid-cols-[10%_25%_25%_15%_15%_10%] p-1 text-sm border-t hover:bg-slate-100 rounded-sm items-center border border-[#00000026] dark:border-slate-400 dark:hover:bg-slate-400 transition-colors dark:text-slate-100">
+          <div className="grid grid-cols-[15%_65%_20%] p-1 text-sm hover:bg-slate-100 border border-[#00000026] rounded-sm dark:border-slate-500 dark:hover:bg-slate-800 transition-colors dark:text-white md:grid-cols-[10%_25%_25%_15%_15%_10%]">
             <div>1</div>
-            <div>John Jotta Kone</div>
+            <div className="hidden md:flex">John Jotta Kone</div>
             <div>johnkottakone@gmai.com </div>
-            <div>
+            <div className="hidden md:flex">
               <div className="w-8 h-8 border rounded-full overflow-hidden">
                 <img
                   src={avatarUser}
@@ -71,7 +71,7 @@ function Users() {
                 />
               </div>
             </div>
-            <div>User </div>
+            <div className="hidden md:flex">User </div>
             <div className="flex justify-around px-1 text-sm font-medium">
               <Link onClick={() => alert("deleted")} className="text-rose-500">
                 <svg

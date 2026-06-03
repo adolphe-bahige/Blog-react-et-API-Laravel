@@ -6,7 +6,12 @@ import { Link } from "react-router-dom";
 function Comments() {
   const [activeId, setActiveId] = useState(null);
   return (
-    <>
+    <div
+      className="min-h-[85vh] flex flex-col gap-2"
+      onClick={(e) => {
+        setActiveId(null);
+      }}
+    >
       <Title className="flex justify-between ">
         <h1 className="text-lg font-medium">All Commentaires</h1>
       </Title>
@@ -15,7 +20,7 @@ function Comments() {
         onClick={(e) => {
           setActiveId(null);
         }}
-        className="w-full h-auto flex flex-wrap gap-4 dark:bg-slate-500 dark:p-2 rounded-md transition-all"
+        className="w-full h-auto flex flex-wrap gap-4 dark:bg-slate-800 dark:p-2 rounded-md transition-all"
       >
         <article
           key={1}
@@ -23,7 +28,7 @@ function Comments() {
             e.stopPropagation();
             setActiveId(1);
           }}
-          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 1 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-800 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 1 ? "bg-slate-200 border-2" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">
@@ -96,7 +101,7 @@ function Comments() {
             e.stopPropagation();
             setActiveId(2);
           }}
-          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 2 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-800 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 2 ? "bg-slate-200 border-2" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">
@@ -169,7 +174,7 @@ function Comments() {
             e.stopPropagation();
             setActiveId(3);
           }}
-          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 3 ? "border-2 bg-slate-200 dark:bg-slate-800 dark:border-slate-800" : "border"} md:w-[48%] lg:w-[32%]`}
+          className={`w-full h-auto p-3 bg-slate-100 text-[#000000d2] flex flex-col gap-4 rounded-md border border-indigo-900 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-800 dark:text-slate-200 dark:border-slate-500 transition-colors shrink-0 ${activeId === 3 ? "bg-slate-200 border-2" : "border"} md:w-[48%] lg:w-[32%]`}
         >
           {/* profil user and responses */}
           <div className="w-full h-10 flex justify-between items-center">
@@ -236,7 +241,7 @@ function Comments() {
           </div>
         </article>
       </section>
-    </>
+    </div>
   );
 }
 
