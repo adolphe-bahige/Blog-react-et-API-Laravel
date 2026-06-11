@@ -24,7 +24,7 @@ function Comments() {
     load();
   }, []);
 
-  if (loading) return <p>Chargement...</p>;
+  if (loading) return <p className="p-4 flex justify-center items-center dark:text-white">Chargement des commentaires...</p>;
 
   return (
     <div

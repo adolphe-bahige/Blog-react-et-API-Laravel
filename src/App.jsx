@@ -24,13 +24,14 @@ function App() {
           <Route path="/categories">
             <Route index element={<Categories />} />
             <Route path="create" element={<CreateCategoryForm />} />
-            <Route path="edit" element={<EditCategoryForm />} />
+            <Route path=":id/edit" element={<EditCategoryForm />} />
           </Route>
 
           <Route path="/posts">
             <Route index element={<Posts />} />
             <Route path="create" element={<CreatePostForm />} />
             <Route path="edit" element={<EditPostForm />} />
+            {/* <Route path=":id/edit" element={<EditPostForm />} /> */}
           </Route>
 
           <Route path="/comments" element={<Comments />} />

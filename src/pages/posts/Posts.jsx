@@ -25,7 +25,7 @@ function Posts() {
     load();
   }, []);
 
-  if (loading) return <p className="text-center">Chargement des articles...</p>;
+  if (loading) return <p className="p-4 flex justify-center items-center text-center dark:text-white">Chargement des articles...</p>;
 
   return (
     <>
@@ -58,7 +58,7 @@ function Posts() {
         <div className="flex flex-col gap-1">
           {/* if (!posts.length) return <p>Aucun article trouvé</p>; */}
           {posts.length == 0 ? (
-            <p>Aucun article trouvé</p>
+            <p className="p-4 flex justify-center items-center dark:text-white">Aucun article trouvé</p>
           ) : (
             posts.map((post, index) => (
               <div

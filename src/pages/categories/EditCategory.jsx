@@ -2,8 +2,36 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Title from "../../components/Titles";
 import Buttons from "../../components/Button";
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
+import { getCategory, updateCategory } from "../../services/categoryService";
+import { useEffect, useState } from "react";
 
 function EditCategoryForm() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [initialValues, setInitialValues] = useState({
+    name: "",
+    slug: "",
+  });
+  // 🔥 Charger la catégorie
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await getCategory(id);
+
+        setInitialValues({
+          name: res.data?.name || "",
+          slug: res.data?.slug || "",
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategory();
+  }, [id]);
+
   return (
     <section className="w-full min-h-[85vh] flex flex-col gap-2">
       <Title className="flex justify-between ">
@@ -12,26 +40,32 @@ function EditCategoryForm() {
 
       <div className="w-full h-auto p-2 flex justify-center items-center md:p-4">
         <Formik
-          initialValues={{
-            name: "",
-            slug: "",
-            description: "",
-          }}
+          enableReinitialize // 🔥 IMPORTANT
+          initialValues={initialValues}
           validationSchema={Yup.object({
             name: Yup.string()
               .max(100, "* Maximum 100 caractères")
               .required("* Le nom est obligatoire"),
-            // slug: Yup.string().required("Slug requis"), // effecer plutard
-            description: Yup.string()
-              .min(10, "* Minimum 10 caractères")
-              .required("* Description requise"), // effecer plutard
           })}
-          onSubmit={(values, { resetForm }) => {
-            console.log(values); // les données
-            resetForm();
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              await updateCategory(id, values);
+
+              toast.success("Catégorie mise à jour");
+
+              // 🔥 Redirection
+              navigate("/categories");
+            } catch (error) {
+              toast.error(
+                error.response?.data?.message ||
+                  "Erreur lors de la modification",
+              );
+            } finally {
+              setSubmitting(false);
+            }
           }}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, isSubmitting }) => (
             <Form className="w-full h-auto p-2 bg-slate-200 flex flex-col gap-2 rounded-md dark:bg-slate-800 dark:text-white md:w-2/4 md:p-4">
               {/* NAME */}
               <div className="flex flex-col gap-1">
@@ -70,26 +104,12 @@ function EditCategoryForm() {
                 />
               </div>
 
-              {/* DESCRIPTION */}
-              <div className="flex flex-col gap-1">
-                <Field
-                  as="textarea"
-                  name="description"
-                  placeholder="Description"
-                  className="outline-hidden border border-indigo-900 focus:border-2 text-sm p-2 h-24 rounded-sm resize-none placeholder:text-slate-400 dark:border-slate-500 dark:placeholder:text-white transition-colors"
-                />
-                <ErrorMessage
-                  name="description"
-                  component="div"
-                  className="text-rose-500 text-xs font-medium transition-[1s]"
-                />
-              </div>
-
               <Buttons
                 type="submit"
+                disabled={isSubmitting}
                 className="bg-indigo-900 text-white font-medium cursor-pointer py-2 mt-6 transition-colors hover:bg-indigo-800 dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-800"
               >
-                Modifier
+                {isSubmitting ? "Modification..." : "Modifier"}
               </Buttons>
             </Form>
           )}

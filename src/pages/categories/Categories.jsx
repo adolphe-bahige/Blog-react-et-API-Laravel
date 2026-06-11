@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import Title from "../../components/Titles";
 import Buttons from "../../components/Button";
 import { useState, useEffect } from "react";
-import { getPCategories } from "../../services/categoryService";
+import { deleteCategory, getPCategories } from "../../services/categoryService";
+import { toast } from "react-toastify";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -25,7 +26,28 @@ function Categories() {
     load();
   }, []);
 
-  if (loading) return <p className="text-center">Chargement des articles...</p>;
+  if (loading) {
+    return (
+      <p className="p-4 flex justify-center items-center text-center dark:text-white">
+        Chargement des categorie...
+      </p>
+    );
+  }
+
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("Voulez-vous supprimer cette catégorie ?");
+
+    if (!confirm) return;
+    try {
+      await deleteCategory(id);
+
+      setCategories((prev) => prev.filter((item) => item.id !== id));
+
+      toast.success("Catégorie supprimée");
+    } catch (error) {
+      toast.error("Erreur lors de la suppression");
+    }
+  };
 
   return (
     <>
@@ -42,28 +64,35 @@ function Categories() {
       {/* tables */}
       <div className="w-full min-h-[74vh] p-2 flex flex-col gap-2 rounded-md dark:bg-slate-800 transition-colors">
         {/* Header */}
-        <div className="grid grid-cols-[15%_40%_25%_20%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-500 transition-colors md:grid-cols-[10%_30%_25%_20%_15%]">
+        <div className="grid grid-cols-[15%_40%_25%_20%] bg-slate-300 p-1 text-sm font-semibold border border-[#00000026] rounded-sm dark:bg-slate-600 dark:text-white dark:border-slate-500 transition-colors md:grid-cols-[10%_30%_25%_10%_15%_10%]">
           <div>Id</div>
           <div>Nom</div>
           <div className="hidden md:flex">Slug</div>
-          <div>Nb articles</div>
+          <div className="hidden md:flex">Nb articles</div>
+          <div>date creation</div>
           <div className="text-center">Actions</div>
         </div>
 
         {/* Rows */}
         <div className="flex flex-col gap-1">
           {categories.length == 0 ? (
-            <p>Aucune categorie trouvé</p>
+            <p className="p-4 flex justify-center items-center dark:text-white">
+              Aucune categorie trouvé
+            </p>
           ) : (
             categories.map((categorie, index) => (
-              <div key={categorie.id} className="grid grid-cols-[15%_40%_25%_20%] p-1 text-sm border-t hover:bg-slate-100 border border-[#00000026] rounded-sm dark:border-slate-500 dark:hover:bg-slate-800 transition-colors dark:text-white md:grid-cols-[10%_30%_25%_20%_15%]">
+              <div
+                key={categorie.id}
+                className="grid grid-cols-[15%_40%_25%_20%] p-1 text-sm border-t hover:bg-slate-100 border border-[#00000026] rounded-sm dark:border-slate-500 dark:hover:bg-slate-800 transition-colors dark:text-white md:grid-cols-[10%_30%_25%_10%_15%_10%]"
+              >
                 <div>{index + 1}</div>
                 <div>{categorie.nom}</div>
                 <div className="hidden md:flex">{categorie.slug}</div>
-                <div>{categorie.nb_articles}</div>
+                <div className="hidden md:flex">{categorie.nb_articles}</div>
+                <div>{categorie.date_creation}</div>
                 <div className="flex justify-around px-1 text-sm font-medium">
                   <Link
-                    to="edit"
+                    to={`/categories/${categorie.id}/edit`}
                     className="text-blue-500 dark:text-slate-100 transition-colors"
                   >
                     <svg
@@ -83,8 +112,9 @@ function Categories() {
                     </svg>
                   </Link>
 
-                  <Link
-                    onClick={() => alert("deleted")}
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(categorie.id)}
                     className="text-rose-500"
                   >
                     <svg
@@ -99,7 +129,7 @@ function Categories() {
                         d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"
                       />
                     </svg>
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))

@@ -6,6 +6,8 @@ import Buttons from "../components/Button";
 import { useEffect, useState } from "react";
 import NotificationBar from "../components/NotificationBar";
 import { ThemeProvider } from "../context/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MainLayout() {
   const [openNotif, setOpenNotif] = useState(false);
@@ -26,6 +28,7 @@ function MainLayout() {
           <div className="w-full ml-auto p-2 bg-slate-50 dark:bg-transparent md:w-[80%]">
             <section className="w-full min-h-[85vh] flex flex-col gap-2 ">
               <Outlet />
+              <ToastContainer position="top-right" autoClose={3000} />
             </section>
           </div>
         </section>
