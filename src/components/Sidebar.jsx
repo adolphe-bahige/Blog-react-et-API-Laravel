@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+// import Buttons from "./Button";
+import { handleLogout } from "../services/logout";
 
 const linkClass = ({ isActive }) =>
   `w-full text-base font-medium p-2 rounded-sm transition-[1s] flex items-center gap-2 hover:bg-slate-200 hover:text-indigo-900 dark:hover:text-slate-800 ${isActive ? "bg-slate-200 text-indigo-900 dark:text-slate-800" : "text-white bg-none"}`;
@@ -8,10 +10,10 @@ function Sidebar({ openSideBar, setOpenSideBar }) {
   return (
     <section
       onClick={() => setOpenSideBar(false)}
-      className={`bg-indigo-900 w-full min-h-[88vh] overflow-y-auto text-white fixed top-[12vh] z-20 transform transition-transform dark:bg-slate-800 duration-300 pt-2 ${openSideBar ? "translate-x-0 " : "-translate-x-full "} md:w-[20%] md:flex md:translate-x-0`}
+      className={`bg-indigo-900 w-full min-h-[88vh] overflow-y-auto text-white flex flex-col justify-between items-center pb-2 fixed top-[12vh] z-20 transform transition-transform dark:bg-slate-800 duration-300 pt-2 px-2 ${openSideBar ? "translate-x-0 " : "-translate-x-full "} md:w-[20%] md:flex md:translate-x-0`}
     >
-      <nav className="w-full flex flex-col gap-1 px-2 ">
-        <NavLink to="/" onClick={closeSide} className={linkClass}>
+      <nav className="w-full flex flex-col gap-1 ">
+        <NavLink to="/dashboard" onClick={closeSide} className={linkClass}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -109,7 +111,12 @@ function Sidebar({ openSideBar, setOpenSideBar }) {
           </svg>
           Settings
         </NavLink>
+
       </nav>
+        
+      <button type="button" onClick={closeSide, handleLogout} className="w-full text-base font-medium p-2 rounded-sm transition-[1s] flex justify-center items-center gap-2 bg-slate-200 text-indigo-900 dark:bg-slate-700 dark:text-white cursor-pointer">
+        Logout
+      </button>
     </section>
   );
 }

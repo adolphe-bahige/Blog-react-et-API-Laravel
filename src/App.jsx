@@ -13,33 +13,46 @@ import CreateCategoryForm from "./pages/categories/createCategory";
 import EditCategoryForm from "./pages/categories/EditCategory";
 import CreatePostForm from "./pages/posts/CreatePost";
 import EditPostForm from "./pages/posts/EditPost";
+import Login from "./pages/auth/Login";
+import { ThemeProvider } from "./context/ThemeContext";
+import Register from "./pages/auth/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Dashboard />} />
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/categories">
-            <Route index element={<Categories />} />
-            <Route path="create" element={<CreateCategoryForm />} />
-            <Route path=":id/edit" element={<EditCategoryForm />} />
+            <Route path="/categories">
+              <Route index element={<Categories />} />
+              <Route path="create" element={<CreateCategoryForm />} />
+              <Route path=":id/edit" element={<EditCategoryForm />} />
+            </Route>
+
+            <Route path="/posts">
+              <Route index element={<Posts />} />
+              <Route path="create" element={<CreatePostForm />} />
+              <Route path="edit" element={<EditPostForm />} />
+              {/* <Route path=":id/edit" element={<EditPostForm />} /> */}
+            </Route>
+
+            <Route path="/comments" element={<Comments />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
 
-          <Route path="/posts">
-            <Route index element={<Posts />} />
-            <Route path="create" element={<CreatePostForm />} />
-            <Route path="edit" element={<EditPostForm />} />
-            {/* <Route path=":id/edit" element={<EditPostForm />} /> */}
-          </Route>
-
-          <Route path="/comments" element={<Comments />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          {/* <Route path="/logout" element={<Register />} /> */}
+        </Routes>
+        <ToastContainer position="top-right" autoClose={3000} />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

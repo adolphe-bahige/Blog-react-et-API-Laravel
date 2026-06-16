@@ -1,41 +1,61 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Title from "../components/Titles";
 import Buttons from "../components/Button";
 import { useEffect, useState } from "react";
 import NotificationBar from "../components/NotificationBar";
-import { ThemeProvider } from "../context/ThemeContext";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ThemeProvider } from "../context/ThemeContext";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 function MainLayout() {
   const [openNotif, setOpenNotif] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return (
+      <p className="p-4 flex justify-center items-center text-center dark:text-white animate-pulse">
+        Chargement...
+      </p>
+    );
+  }
 
   return (
-    <ThemeProvider>
-      <main className="w-full h-auto flex flex-col relative">
-        <Navbar
-          setOpenNotif={setOpenNotif}
-          openSideBar={openSideBar}
-          setOpenSideBar={setOpenSideBar}
-        />
+    // <ThemeProvider>
+    <main className="w-full h-auto flex flex-col relative">
+      <Navbar
+        setOpenNotif={setOpenNotif}
+        openSideBar={openSideBar}
+        setOpenSideBar={setOpenSideBar}
+      />
 
-        <section className="w-full h-auto flex relative dark:bg-slate-700">
-          <Sidebar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
+      <section className="w-full h-auto flex relative dark:bg-slate-700">
+        <Sidebar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
 
-          <div className="w-full ml-auto p-2 bg-slate-50 dark:bg-transparent md:w-[80%]">
-            <section className="w-full min-h-[85vh] flex flex-col gap-2 ">
-              <Outlet />
-              <ToastContainer position="top-right" autoClose={3000} />
-            </section>
-          </div>
-        </section>
+        <div className="w-full ml-auto p-2 bg-slate-50 dark:bg-transparent md:w-[80%]">
+          <section className="w-full min-h-[85vh] flex flex-col gap-2 ">
+            <Outlet />
+            {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+          </section>
+        </div>
+      </section>
 
-        <NotificationBar openNotif={openNotif} setOpenNotif={setOpenNotif} />
-      </main>
-    </ThemeProvider>
+      <NotificationBar openNotif={openNotif} setOpenNotif={setOpenNotif} />
+    </main>
+    // </ThemeProvider>
   );
 }
 
