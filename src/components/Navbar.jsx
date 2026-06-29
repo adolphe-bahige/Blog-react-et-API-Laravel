@@ -1,6 +1,8 @@
 import avatar from "../assets/users/profil user.jpg";
 import avatarUser from "../assets/users/user profil.jpg";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 function SunIcon() {
   return (
@@ -73,8 +75,39 @@ function RemoveMenuListIcon() {
   );
 }
 
+function Avatar() {
+  const { user } = useAuth();
+  const [imgError, setImgError] = useState(false);
+
+  if (!user) return null;
+
+  const imageUrl = user.profil
+    ? `http://localhost:8000/storage/${user.profil}`
+    : null;
+
+  // on recupere la premiere lettre du nom
+  const initial = user.name?.trim()?.charAt(0)?.toUpperCase() || "?";
+
+  return (
+    <div className="flex items-center gap-2">
+      {imageUrl && !imgError ? (
+        <img
+          src={imageUrl}
+          onError={() => setImgError(true)}
+          className="w-12 h-12 rounded-full object-cover"
+        />
+      ) : (
+        <div className="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+          {initial}
+        </div>
+      )}
+    </div>
+  );
+};
+
 function Navbar({ setOpenNotif, openSideBar, setOpenSideBar }) {
   const { darkMode, setDarkMode } = useTheme();
+
   return (
     <nav className="w-full h-[12vh] flex justify-between items-center px-6 bg-indigo-900 text-white sticky top-0 z-10 dark:bg-slate-800 transition-colors ">
       {/* logo */}
@@ -120,13 +153,16 @@ function Navbar({ setOpenNotif, openSideBar, setOpenSideBar }) {
         </button>
 
         {/* avatar */}
-        <div className="w-12 h-12 rounded-full flex justify-center items-center overflow-hidden border border-blue-900">
+        <div className="flex items-center gap-2">
+          <Avatar />
+        </div>
+        {/* <div className="w-12 h-12 rounded-full flex justify-center items-center overflow-hidden border border-blue-900">
           <img
             src={avatarUser}
             alt="Profil"
             className="w-full h-full object-cover rounded-md"
           />
-        </div>
+        </div> */}
 
         {/* menu list */}
         <button

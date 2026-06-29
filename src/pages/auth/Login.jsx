@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import Buttons from "../../components/Button";
 import { useState } from "react";
 import { login } from "../../services/auth";
+import { useAuth } from "../../context/AuthContext";
 
 function IconShowPass() {
   return (
@@ -42,8 +43,11 @@ function IconHidePass() {
 
 function Login() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  const { login: loginContext } = useAuth();
+
   const [apiError, setApiError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <section className="w-full h-screen flex justify-center items-center bg-indigo-900 transition-colors dark:bg-slate-800 p-2">
       <div className="w-full h-auto rounded-md p-4 flex flex-col justify-center items-center gap-4 bg-white transition-colors dark:bg-slate-700 md:w-[50%] lg:w-[30%]">
@@ -71,23 +75,19 @@ function Login() {
               .required("* Le mot de passe est requis"),
           })}
           onSubmit={async (values, { setSubmitting }) => {
-            setApiError("");
             try {
               const { data } = await login(values);
-
-              localStorage.setItem("token", data.token);
+              loginContext(data.user, data.token);
 
               toast.success("Connexion réussie");
 
               navigate("/dashboard");
-              return;
             } catch (error) {
               const message =
                 error.response?.data?.message ||
                 "Email ou mot de passe incorrect";
 
-              setApiError(message); // ✅ stable
-              // toast.error(message);
+              setApiError(message);
             } finally {
               setSubmitting(false);
             }

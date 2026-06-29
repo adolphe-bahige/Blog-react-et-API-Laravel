@@ -1,12 +1,23 @@
 import { Link, NavLink } from "react-router-dom";
-// import Buttons from "./Button";
-import { handleLogout } from "../services/logout";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext";
 
 const linkClass = ({ isActive }) =>
   `w-full text-base font-medium p-2 rounded-sm transition-[1s] flex items-center gap-2 hover:bg-slate-200 hover:text-indigo-900 dark:hover:text-slate-800 ${isActive ? "bg-slate-200 text-indigo-900 dark:text-slate-800" : "text-white bg-none"}`;
 
 function Sidebar({ openSideBar, setOpenSideBar }) {
   const closeSide = () => setOpenSideBar(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (!window.confirm("Se deconnecter ?")) return;
+
+    logout();
+    navigate("/login");
+  };
+
   return (
     <section
       onClick={() => setOpenSideBar(false)}
@@ -111,12 +122,18 @@ function Sidebar({ openSideBar, setOpenSideBar }) {
           </svg>
           Settings
         </NavLink>
-
       </nav>
-        
-      <button type="button" onClick={closeSide, handleLogout} className="w-full text-base font-medium p-2 rounded-sm transition-[1s] flex justify-center items-center gap-2 bg-slate-200 text-indigo-900 dark:bg-slate-700 dark:text-white cursor-pointer">
-        Logout
-      </button>
+
+      <div className="w-full flex flex-col justify-center items-center gap-2">
+        <p className="text-xs">Welcome {user?.name} !</p>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="w-full text-base font-medium p-2 rounded-sm transition-[1s] flex justify-center items-center gap-2 bg-slate-200 text-indigo-900 dark:bg-slate-700 dark:text-white cursor-pointer"
+        >
+          Logout
+        </button>
+      </div>
     </section>
   );
 }

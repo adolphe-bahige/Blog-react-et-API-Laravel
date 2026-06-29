@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Title from "../../components/Titles";
 import Buttons from "../../components/Button";
 import { useState, useEffect } from "react";
-import { deleteCategory, getPCategories } from "../../services/categoryService";
+import { deleteCategory, getCategories } from "../../services/categoryService";
 import { toast } from "react-toastify";
 
 function Categories() {
@@ -13,7 +13,7 @@ function Categories() {
   useEffect(() => {
     const load = async () => {
       try {
-        const { categories, meta } = await getPCategories();
+        const { categories, meta } = await getCategories();
         setCategories(categories);
         setMeta(meta);
       } catch (error) {

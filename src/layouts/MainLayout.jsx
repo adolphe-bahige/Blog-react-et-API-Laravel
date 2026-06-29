@@ -8,22 +8,23 @@ import NotificationBar from "../components/NotificationBar";
 // import { ThemeProvider } from "../context/ThemeContext";
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../context/AuthContext";
 
 function MainLayout() {
   const [openNotif, setOpenNotif] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const { user, isAuthReady } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
+    if (isAuthReady && !user) {
       navigate("/login");
-    } else {
+    } else if (isAuthReady && user) {
       setLoading(false);
     }
-  }, []);
+  }, [user, isAuthReady]);
 
   if (loading) {
     return (
